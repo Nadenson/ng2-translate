@@ -1,5 +1,5 @@
-import {Injectable, EventEmitter, Optional} from 'angular2/core';
-import {Http, Response} from 'angular2/http';
+import {Injectable, EventEmitter, Optional} from '@angular/core';
+import {Http, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable'
 import {Observer} from "rxjs/Observer";
 import 'rxjs/add/observable/of';
@@ -32,7 +32,7 @@ export abstract class TranslateLoader {
 }
 
 export class TranslateStaticLoader implements TranslateLoader {
-    constructor(private http: Http, private prefix: string = 'i18n', private suffix: string = '.json') {}
+    constructor(private http: any, private prefix: string = 'i18n', private suffix: string = '.json') {}
 
     /**
      * Gets the translations from the server

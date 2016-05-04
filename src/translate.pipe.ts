@@ -1,6 +1,5 @@
-import {PipeTransform, Pipe, Injectable, EventEmitter, OnDestroy, ChangeDetectorRef} from 'angular2/core';
+import {PipeTransform, Pipe, Injectable, EventEmitter, OnDestroy, ChangeDetectorRef} from '@angular/core';
 import {TranslateService, LangChangeEvent} from './translate.service';
-import {isPresent, isArray} from "angular2/src/facade/lang";
 
 @Injectable()
 @Pipe({
@@ -133,4 +132,12 @@ export class TranslatePipe implements PipeTransform, OnDestroy {
     ngOnDestroy(): void {
         this._dispose();
     }
+}
+
+function isArray(obj:any): boolean {
+    return Array.isArray(obj);
+}
+
+function isPresent(obj:any): boolean {
+    return obj !== undefined && obj !== null;
 }
