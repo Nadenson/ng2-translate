@@ -1,37 +1,52 @@
 {
-  "name": "rc-ng2-translate",
-  "description": "An implementation of angular translate for Angular 2",
-  "version": "2.0.1",
-  "scripts": {
-    "test": "tsc && karma start",
-    "test-watch": "tsc && karma start --no-single-run --auto-watch",
-    "commit": "npm run prepublish && npm test && git-cz",
-    "prepublish": "typings install && tsc && node make.js",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ocombe/ng2-translate.git"
-  },
-  "keywords": [
-    "angular",
-    "angular2",
-    "translate",
-    "i18n"
+  "_args": [
+    [
+      "ng2-translate@git+https://github.com/Nadenson/ng2-translate.git",
+      "/Users/influans/Influans/code/inf_uniland"
+    ]
   ],
-  "author": "Olivier Combe",
-  "license": "MIT",
+  "_from": "git+https://github.com/Nadenson/ng2-translate.git",
+  "_id": "ng2-translate@2.0.1",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/ng2-translate",
+  "_phantomChildren": {},
+  "_requested": {
+    "hosted": {
+      "directUrl": "https://raw.githubusercontent.com/Nadenson/ng2-translate/master/package.json",
+      "gitUrl": "git://github.com/Nadenson/ng2-translate.git",
+      "httpsUrl": "git+https://github.com/Nadenson/ng2-translate.git",
+      "shortcut": "github:Nadenson/ng2-translate",
+      "ssh": "git@github.com:Nadenson/ng2-translate.git",
+      "sshUrl": "git+ssh://git@github.com/Nadenson/ng2-translate.git",
+      "type": "github"
+    },
+    "name": "ng2-translate",
+    "raw": "ng2-translate@git+https://github.com/Nadenson/ng2-translate.git",
+    "rawSpec": "git+https://github.com/Nadenson/ng2-translate.git",
+    "scope": null,
+    "spec": "git+https://github.com/Nadenson/ng2-translate.git",
+    "type": "hosted"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "git+https://github.com/Nadenson/ng2-translate.git#eb1301c8efeacba22ce33f3c5cdd9400ddc221ba",
+  "_shasum": "a6c86efa42dc6e48e072ea9d5e730575de0f9eb0",
+  "_shrinkwrap": null,
+  "_spec": "ng2-translate@git+https://github.com/Nadenson/ng2-translate.git",
+  "_where": "/Users/influans/Influans/code/inf_uniland",
+  "author": {
+    "name": "Olivier Combe"
+  },
   "bugs": {
     "url": "https://github.com/ocombe/ng2-translate/issues"
   },
-  "main": "ng2-translate.js",
-  "typings": "./ng2-translate.d.ts",
-  "homepage": "https://github.com/ocombe/ng2-translate",
-  "peerDependencies": {
-    "@angular/common": "^2.0.0-rc.0",
-    "@angular/core": "^2.0.0-rc.0",
-    "@angular/http": "^2.0.0-rc.0"
+  "czConfig": {
+    "path": "node_modules/cz-conventional-changelog"
   },
+  "dependencies": {},
+  "description": "An implementation of angular translate for Angular 2",
   "devDependencies": {
     "@angular/common": "^2.0.0-rc.0",
     "@angular/core": "^2.0.0-rc.0",
@@ -58,7 +73,36 @@
     "typings": "^0.6.8",
     "zone.js": "^0.6.10"
   },
-  "czConfig": {
-    "path": "node_modules/cz-conventional-changelog"
-  }
+  "gitHead": "eb1301c8efeacba22ce33f3c5cdd9400ddc221ba",
+  "homepage": "https://github.com/ocombe/ng2-translate",
+  "keywords": [
+    "angular",
+    "angular2",
+    "translate",
+    "i18n"
+  ],
+  "license": "MIT",
+  "main": "ng2-translate.js",
+  "name": "ng2-translate",
+  "optionalDependencies": {},
+  "peerDependencies": {
+    "@angular/common": "^2.0.0-rc.0",
+    "@angular/core": "^2.0.0-rc.0",
+    "@angular/http": "^2.0.0-rc.0"
+  },
+  "readme": "# ng2-translate [![Build Status](https://travis-ci.org/ocombe/ng2-translate.svg?branch=master)](https://travis-ci.org/ocombe/ng2-translate) [![npm version](https://img.shields.io/npm/v/ng2-translate.svg)](https://www.npmjs.com/package/ng2-translate)\nAn implementation of angular translate for Angular 2.\n\nSimple example using ng2-translate: https://github.com/ocombe/ng2-play/tree/ng2-translate\n\nGet the complete changelog here: https://github.com/ocombe/ng2-translate/releases\n\n* [Installation](#installation)\n* [Usage](#usage)\n* [API](#api)\n* [Additional Framework Support](#additional-framework-support)\n\n## Installation\nFirst you need to install the npm module:\n```sh\nnpm install ng2-translate --save\n```\n\n**If you use SystemJS** to load your files, you might have to update your config like [in this example](https://github.com/ocombe/ng2-play/blob/ng2-translate/index.html#L25-L28).\n\n## Usage\n\nFinally, you can use ng2-translate in your Angular 2 project (make sure that you've loaded the angular2/http bundle as well).\nIt is recommended to use `TRANSLATE_PROVIDERS` in the bootstrap of your application and to never add `TranslateService` to the \"providers\" property of your components, this way you will keep it as a singleton.\n`TRANSLATE_PROVIDERS` provides a default configuration for the static translation file loader.\nIf you add `TranslateService` to the \"providers\" property of a component it will instantiate a new instance of the service that won't be initialized with the language to use or the default language.\n\n```ts\nimport {HTTP_PROVIDERS} from 'angular2/http';\nimport {Component, Injectable, provide} from 'angular2/core';\nimport {TRANSLATE_PROVIDERS, TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';\nimport {bootstrap} from 'angular2/platform/browser';\n\nbootstrap(AppComponent, [\n    HTTP_PROVIDERS,\n    // not required, but recommended to have 1 unique instance of your service\n    TRANSLATE_PROVIDERS\n]);\n\n@Component({\n    selector: 'app',\n    template: `\n        <div>{{ 'HELLO' | translate:{value: param} }}</div>\n    `,\n    pipes: [TranslatePipe]\n})\nexport class AppComponent {\n    param: string = \"world\";\n\n    constructor(translate: TranslateService) {\n        var userLang = navigator.language.split('-')[0]; // use navigator lang if available\n        userLang = /(fr|en)/gi.test(userLang) ? userLang : 'en';\n\n         // this language will be used as a fallback when a translation isn't found in the current language\n        translate.setDefaultLang('en');\n\n         // the lang to use, if the lang isn't available, it will use the current loader to get them\n        translate.use(userLang);\n    }\n}\n```\n\nFor now, only the static loader is available. You can configure it like this during bootstrap or in the `providers` property of a component:\n```ts\nbootstrap(AppComponent, [\n    HTTP_PROVIDERS,\n    provide(TranslateLoader, {\n        useFactory: (http: Http) => new TranslateStaticLoader(http, 'assets/i18n', '.json'),\n        deps: [Http]\n    }),\n    // use TranslateService here, and not TRANSLATE_PROVIDERS (which will define a default TranslateStaticLoader)\n    TranslateService\n]);\n\n```\n\nFor Ionic 2 here is a complete bootstrap with configuration:\n```ts\nimport {provide} from 'angular2/core';\nimport {TranslateService, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';\n\n@App({\n  templateUrl: '....',\n  config: {},\n  providers: [\n    provide(TranslateLoader, {\n      useFactory: (http: Http) => new TranslateStaticLoader(http, 'assets/i18n', '.json'),\n      deps: [Http]\n    }),\n    TranslateService\n  ]\n})\n```\n\nThen put your translations in a json file that looks like this (for `en.json`):\n```json\n{\n    \"HELLO\": \"hello {{value}}\"\n}\n```\n\nAn then you can get new translations like this:\n```js\ntranslate.getTranslation(userLang);\n```\n\nBut you can also define your translations manually instead of using `getTranslation`:\n```ts\ntranslate.setTranslation('en', {\n    \"HELLO\": \"hello {{value}}\"\n});\n```\n\n## API\n### TranslateService\n#### Properties:\n- `currentLang`: The lang currently used\n- `currentLoader`: An instance of the loader currently used (static loader by default)\n- `onLangChange`: An EventEmitter to listen to lang change events. A `LangChangeEvent` is an object with the properties `lang: string` & `translations: any` (an object containing your translations).\n\n    example:\n    ```ts\n    onLangChange.subscribe(event: LangChangeEvent) => {\n\t  // do something\n\t});\n    ```\n\n#### Methods:\n- `setDefaultLang(lang: string)`: Sets the default language to use as a fallback\n- `use(lang: string): Observable<any>`: Changes the lang currently used\n- `getTranslation(lang: string): Observable<any>`: Gets an object of translations for a given language with the current loader\n- `setTranslation(lang: string, translations: Object)`: Manually sets an object of translations for a given language\n- `getLangs()`: Returns an array of currently available langs\n- `get(key: string|Array<string>, interpolateParams?: Object): Observable<string|Object>`: Gets the translated value of a key (or an array of keys)\n- `instant(key: string|Array<string>, interpolateParams?: Object): string|Object`: Gets the instant translated value of a key (or an array of keys). /!\\ This method is **synchronous** and the default file loader is asynchronous. You are responsible for knowing when your translations have been loaded and it is safe to use this method. If you are not sure then you should use the `get` method instead.\n- `set(key: string, value: string, lang?: string)`: Sets the translated value of a key\n- `reloadLang(lang: string): Observable<string|Object>`: Calls resetLang and retrieves the translations object for the current loader\n- `resetLang(lang: string)`: Removes the current translations for this lang. /!\\ You will have to call `use`, `reloadLang` or `getTranslation` again to be able to get translations\n\n#### Write & use your own loader\nIf you want to write your own loader, you need to create a class that implements `TranslateLoader`.\nThe only required method is `getTranslation` that must return an `Observable`. If your loader is synchronous, just use `Observable.of` to create an observable from your static value.\n\n##### Example\n```ts\nclass CustomLoader implements TranslateLoader {\n    getTranslation(lang: string): Observable<any> {\n        return Observable.of({\"KEY\": \"Value\"});\n    }\n}\n```\n\nOnce you've defined your loader, you can provide it during bootstrap or in the `providers` property of a component:\n```ts\nprovide(TranslateLoader, {useClass: CustomLoader})\n```\n\n#### How to handle missing translations\nYou can setup a provider for `MissingTranslationHandler` in the bootstrap of your application (recommended), or in the `providers` property of a component.\nIt will be called when the requested translation is not available.\nThe only required method is `handle` where you can do whatever you want. If this method returns a value or an observable (that should return a string), then this will be used.\nJust don't forget that it will be called synchronously from the `instant` method.\n\n##### Example:\nCreate a Missing Translation Handler\n```ts\nimport {MissingTranslationHandler} from 'ng2-translate/ng2-translate';\n\nexport class MyMissingTranslationHandler implements MissingTranslationHandler {\n  handle(key: string) {\n      return 'some value';\n  }\n}\n```\n\nSetup the Missing Translation Handler in bootstrap (recommended) or in the `providers` property of a component\n```ts\nprovide(MissingTranslationHandler, { useClass: MyMissingTranslationHandler })\n```\n\n### TranslatePipe\nYou can call the TranslatePipe with some optional parameters that will be transpolated into the translation for the given key.\n\nExample:\n```html\n<p>Say {{ 'HELLO' | translate:{value: \"world\"} }}</p>\n```\n\nWith the given translation: `\"HELLO\": \"hello {{value}}\"`.\n\n### Parser\n#### Methods:\n- `interpolate(expr: string, params?: any): string`: Interpolates a string to replace parameters.\n\n    `This is a {{ key }}` ==> `This is a value` with `params = { key: \"value\" }`\n- `getValue(target: any, key: stirng): any`:  Gets a value from an object by composed key\n     `parser.getValue({ key1: { keyA: 'valueI' }}, 'key1.keyA') ==> 'valueI'`\n     \n## Additional Framework Support\n\n* [NativeScript](https://www.nativescript.org/) via [nativescript-ng2-translate](https://github.com/NathanWalker/nativescript-ng2-translate)\n\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ocombe/ng2-translate.git"
+  },
+  "scripts": {
+    "commit": "npm run prepublish && npm test && git-cz",
+    "prepublish": "typings install && tsc && node make.js",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "test": "tsc && karma start",
+    "test-watch": "tsc && karma start --no-single-run --auto-watch"
+  },
+  "typings": "./ng2-translate.d.ts",
+  "version": "2.0.1"
 }
