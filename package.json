@@ -1,7 +1,7 @@
 {
   "name": "ng2-translate",
   "description": "An implementation of angular translate for Angular 2",
-  "version": "2.0.1"
+  "version": "2.0.1",
   "scripts": {
     "test": "tsc && karma start",
     "test-watch": "tsc && karma start --no-single-run --auto-watch",
